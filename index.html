@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Министерство здравоохранения</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      background: #f8f9fa;
+    }
+
+    /* ── Logo block ── */
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 44px;
+    }
+
+    .logo-block img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .logo-text h1 {
+     font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      margin-top: 1px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+
+    .logo-text p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      margin-top: 1px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
+      padding: 28px 24px 24px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* ── Field label ── */
+    .field-label {
+      font-size: 14px;
+      font-weight: 400;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ── Input ── */
+    .inp {
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      color: #1a1a1a;
+      border: 1.5px solid #ced4da;
+      border-radius: 4px;
+      outline: none;
+      background: #ffffff;
+      text-align: center;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .inp::placeholder {
+      color: #adb5bd;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .inp:focus {
+      border-color: #4285f4;
+      box-shadow: 0 0 0 2px rgba(66,133,244,.18);
+    }
+
+    .inp.err {
+      border-color: #e53935;
+    }
+
+    /* ── Error text ── */
+    .err-txt {
+      font-size: 13px;
+      color: #e53935;
+      margin-top: 5px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      display: none;
+    }
+
+    .err-txt.show { display: block; }
+
+    /* ── Button ── */
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px 16px;
+      background: #4285f4;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: .2px;
+      transition: background .15s, opacity .15s;
+    }
+
+    .btn:hover { background: #3367d6; }
+    .btn:active { opacity: .9; transform: scale(.99); }
+    .btn:disabled { opacity: .7; cursor: default; }
+
+    /* ── Success ── */
+    .success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 48px; height: 48px;
+      background: #e8f5e9;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+
+    .success p {
+      font-size: 14px;
+      color: #2e7d32;
+      font-weight: 500;
+    }
+
+    /* ── Responsive mobile ── */
+    @media (max-width: 480px) {
+      .card { box-shadow: none; border: 1px solid #e0e0e0; padding: 24px 18px 20px; }
+      body { background: #ffffff; justify-content: flex-start; padding-top: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-block">
+    <!--
+      MUHIM: Quyidagi img src="gerb.png" ni o'z gerb rasmingiz yo'li bilan almashtiring.
+      Masalan: src="/images/gerb.png"  yoki  src="https://sizningsayt.uz/gerb.png"
+    -->
+    <img
+      src="https://medical-sertificate.ssv.uz/logo.png"
+      alt="O'zbekiston gerbi"
+      onerror="this.style.display='none'"
+    />
+    <div class="logo-text">
+      <h1>Министерство здравоохранения</h1>
+      <p>Республики Узбекистан</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div id="formContent">
+      <div class="field-label">Код подтверждения</div>
+      <input
+        class="inp"
+        id="codeInput"
+        type="text"
+        placeholder="Введите код"
+        maxlength="12"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+      />
+      <div class="err-txt" id="errMsg">Необходимо заполнить</div>
+      <button class="btn" id="submitBtn">Подвердить</button>
+    </div>
+
+    <div class="success" id="successMsg">
+      <div class="success-icon">✓</div>
+      <p>Код успешно подтверждён!</p>
+    </div>
+  </div>
+
+  <script>
+     const input = document.getElementById('codeInput');
+    const errMsg = document.getElementById('errMsg');
+    const btn = document.getElementById('submitBtn');
+ 
+    // Show error by default (like in screenshot)
+    errMsg.classList.add('show');
+    input.classList.add('err');
+ 
+    input.addEventListener('input', function() {
+      if (this.value.trim()) {
+        this.classList.remove('err');
+        errMsg.classList.remove('show');
+      } else {
+        this.classList.add('err');
+        errMsg.classList.add('show');
+      }
+    });
+ 
+    btn.addEventListener('click', function() {
+      const val = input.value.trim();
+ 
+      // Bo'sh bo'lsa xato ko'rsat
+      if (!val) {
+        input.classList.add('err');
+        errMsg.classList.add('show');
+        input.focus();
+        return;
+      }
+ 
+      // Tugmani yuklanish holatiga o'tkar
+      btn.disabled = true;
+      btn.textContent = 'Проверка...';
+ 
+      // Avval fayl mavjudligini tekshir, keyin yo'naltir
+      fetch(val + '.html', { method: 'HEAD' })
+        .then(function(res) {
+          if (res.ok) {
+            // Fayl bor — o'tkazib yubor
+            window.location.href = val + '.html';
+          } else {
+            // Fayl yo'q — xato ko'rsat
+            showError('Неверный код');
+          }
+        })
+        .catch(function() {
+          // Tarmoq xatosi yoki fayl yo'q
+          showError('Неверный код');
+        });
+    });
+ 
+    function showError(msg) {
+      btn.disabled = false;
+      btn.textContent = 'Подвердить';
+      input.classList.add('err');
+      errMsg.textContent = msg;
+      errMsg.classList.add('show');
+      input.focus();
+    }
+ 
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') btn.click();
+    });
+  </script>
+</body>
+</html>
